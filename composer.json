@@ -1,0 +1,40 @@
+{
+    "name":"len/sms-extend",
+    "description":"This is just an extension package for sending SMS",
+    "keywords":["sms", "laravel", "php", "message"],
+    "type":"library",
+    "require":{
+        "php": ">=5.6",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev":{
+        "phpunit/phpunit": "^5.6",
+    },
+    "autoload": {
+        "psr-4": {
+            "Len\\SmsExtend\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Len\\SmsExtend\\Tests\\": "tests"
+        }
+    },
+    "license": "MIT",
+    "authors":[
+        {
+            "name":"len",
+            "wcf818520@sina.com"
+        }
+    ],
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Len\\SmsExtend\\Providers\\SmsExtendServiceProvidere"
+            ],
+            "aliases":{
+                "SmsExtend":"Len\\SmsExtend\\Facades\\SmsExtend"
+            }
+        }
+    }
+}
