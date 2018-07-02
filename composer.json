@@ -30,7 +30,7 @@
     "extra":{
         "laravel":{
             "providers":[
-                "Len\\SmsExtend\\Providers\\SmsExtendServiceProvidere"
+                "Len\\SmsExtend\\Providers\\SmsExtendServiceProvider"
             ],
             "aliases":{
                 "SmsExtend":"Len\\SmsExtend\\Facades\\SmsExtend"
