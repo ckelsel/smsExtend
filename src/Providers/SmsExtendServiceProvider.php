@@ -10,7 +10,7 @@ use Len\SmsExtend\SmsExtend;
  * @date    2018-07-02 16:36:57
  * @version V1
  */
-class SmsExtendServiceProvider extends AnotherClass
+class SmsExtendServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
