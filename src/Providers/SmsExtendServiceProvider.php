@@ -1,5 +1,5 @@
 <?php
-namespace Len\SmsExtend;
+namespace Len\SmsExtend\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Len\SmsExtend\SmsExtend;
