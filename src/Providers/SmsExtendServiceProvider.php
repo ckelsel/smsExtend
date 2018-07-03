@@ -29,12 +29,12 @@ class SmsExtendServiceProvider extends ServiceProvider
     public function boot()
     {
         //合并配置文件
-        $this->mergeCOnfigFrom(__DIR__.'/../../config/sms.php', "smsExtend");
+        //$this->mergeConfigFrom(__DIR__.'/../../config/sms.php', "smsExtend");
 
         //发布指定配置
         $this->publishes([
             __DIR__.'/../../config/sms.php' => config_path('sms.php')
-        ], 'smsExtend');
+        ]);
     }
 
     /**
