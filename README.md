@@ -26,43 +26,41 @@ $ composer require "len/sms-extend"
 
 ## 使用
 
-1. 在config目录下面新增sms.php配置文件，对应的配置内容
+1. 在config目录下创建sms.php 文件，需运行以下命令：
 ```
-/*
-|--------------------------------------------------------------------------
-| SMS CONFIG
-|--------------------------------------------------------------------------
-|
-| This is about the configuration of the docking SMS platform.
-|
-| Supported: "253 cloud communication（创蓝） "
-|
- */
-return [
-    //默认网关
-    'default_gateways' => 'chuanglan',
-
-    //可用的网关配置
-    'gateways'         => [
-        'chuanglan' => [
-            'account'  => 'N2928615',
-            'password' => '4dcvbiUnj',
-        ],
-    ],
-    //白名单，建议测试环境下新增该配置，避免测试时发送真实的短信
-    'white_list'       => [],
-];
-
-```
-2. 在config/app.php 的 providers数组里面增加以下内容
+$ php artisan vendor:publish
+该命令会弹出选项，选择（Provider: Len\SmsExtend\Providers\SmsExtendServiceProvider）选项,即创建成功
 ```
 
-```
+2. 在config/sms.php配置文件里面，配置短信平台的账号等相关信息
 
-
+3. 调用SmsExtend发送短信：
 ```php
 use Len\SmsExtend\SmsExtend;
 
-SmsExtend::send("13800309304", "短信验证码是：000000");
+$mobile_phone = "13788889999";
+$message      = "短信验证码是：000000";
+$result       = SmsExtend::send($mobile_phone, $message);
 ```
 
+4. 关于发送短信返回数据结构及说明：
+```
+{
+    "code":0,
+    "message":"success",
+    "data":{}
+}
+code:状态码，大于0标识返回发送失败,反之0即表示发送成功
+message:发送失败时对应的错误内容提示
+data:短信服务商返回的对应数据
+```
+
+## 关于支持平台的配置说明
+
+### 253云通讯（创蓝）
+```
+'chuanglan' => [
+    'account'  => '', //调用发送短信API账号
+    'password' => '', //调用发送短信API密码
+]
+```
