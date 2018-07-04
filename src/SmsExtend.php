@@ -36,9 +36,9 @@ class SmsExtend
         $gateway->setGatewayConfig($gatewayConfig);
 
         //白名单检测
-       /* if (!$this->whiteListCheck($mobilePhone)) {
+        if (!$this->whiteListCheck($mobilePhone)) {
             return $gateway->responseData(0, "sms send success");
-        }*/
+        }
 
         return $gateway->send($mobilePhone, $message);
     }
