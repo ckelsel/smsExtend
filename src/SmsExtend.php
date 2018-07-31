@@ -16,9 +16,9 @@ class SmsExtend
      * 发送
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-21
-     * @param string $mobilePhone [description]
-     * @param string $message [description]
+     * @date   2018-06-21
+     * @param  string $mobilePhone [description]
+     * @param  string $message [description]
      * @return array
      */
     public function send(string $mobilePhone, string $message)
@@ -47,8 +47,8 @@ class SmsExtend
      * create gateway
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-20
-     * @param string $name 名称
+     * @date   2018-06-20
+     * @param  string $name 名称
      * @return object
      */
     protected function createGateway($name)
@@ -61,8 +61,8 @@ class SmsExtend
      * make gateway
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-20
-     * @param string $gateway 网关名称
+     * @date   2018-06-20
+     * @param  string $gateway 网关名称
      * @return object
      */
     protected function makeGateway(string $gateway)
@@ -78,7 +78,7 @@ class SmsExtend
      * Format gateway name
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-20
+     * @date   2018-06-20
      * @param  string $name 名称
      * @return string
      */
@@ -95,7 +95,7 @@ class SmsExtend
      * 获取默认的网关
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-21
+     * @date   2018-06-21
      * @return string
      */
     protected function getDefaultGatewayName()
@@ -112,7 +112,7 @@ class SmsExtend
      * 获取网关的配置
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-21
+     * @date   2018-06-21
      * @param  string  $gatewayName 网关名称
      * @return array
      */
@@ -135,19 +135,20 @@ class SmsExtend
      * 白名单检测
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
-     * @date 2018-06-21
-     * @param string $mobilePhone 手机
+     * @date   2018-06-21
+     * @param  string $mobilePhone 手机
      * @return boolean
      */
     protected function whiteListCheck(string $mobilePhone)
     {
+        //如果没有设置白名单，则全部发送短信
         $whiteList = Config::get('sms.white_list');
         if (empty($whiteList) || !is_array($whiteList)) {
             return true;
         }
 
-        //如果在测试环境同时没有加入白名单则无法发送短信
-        if (env('APP_ENV') == 'local' && !in_array($mobilePhone, $whiteList)) {
+        //如果开启了白名单且当前手机号码不在白名单里面，则不发送短信
+        if (!in_array($mobilePhone, $whiteList)) {
             return false;
         }
 
