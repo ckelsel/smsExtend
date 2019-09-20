@@ -45,7 +45,7 @@ class ChuanglanabroadGateway extends Gateway
         }
 
         $code = intval($result['code']);
-        $msg  = !$code ? 'success' : $result['errorMsg'];
+        $msg  = !$code ? 'success' : $result['error'];
         unset($result['code']);
         return $this->responseData($code, $msg, $result);
     }
