@@ -17,14 +17,15 @@ class SmsExtend
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
      * @date   2018-06-21
-     * @param  string $mobilePhone [description]
-     * @param  string $message [description]
+     * @param  string $mobilePhone 手机
+     * @param  string $message 模板消息
+     * @param  string $gatewayName 网关名称 没有则取默认网关
      * @return array
      */
-    public function send(string $mobilePhone, string $message)
+    public function send(string $mobilePhone, string $message, string $gatewayName = '')
     {
-        //获取默认网关名称
-        $gatewayName = $this->getDefaultGatewayName();
+        //过滤网关名称
+        $gatewayName = $this->filterGatewayName($gatewayName);
 
         //创建网关对象
         $gateway = $this->createGateway($gatewayName);
@@ -92,16 +93,20 @@ class SmsExtend
     }
 
     /**
-     * 获取默认的网关
+     * 过滤网关
      *
      * @author chenfeng (wangchenfeng@xdqcjy.com)
      * @date   2018-06-21
      * @return string
      */
-    protected function getDefaultGatewayName()
+    protected function filterGatewayName(string $gatewayName)
     {
-        $gatewayName = Config::get('sms.default_gateways');
         if (empty($gatewayName)) {
+            $gatewayName = Config::get('sms.default_gateways');
+        }
+
+        $gatewaysArr = Config::get('sms.gateways');
+        if (!isset($gatewaysArr[$gatewayName])) {
             throw new \RuntimeException(' Please configure the default gateway  in the sms.conf file');
         }
 
@@ -118,11 +123,7 @@ class SmsExtend
      */
     protected function getGatewayConfig(string $gatewayName = '')
     {
-        if (!empty($gatewayName)) {
-            $config = Config::get('sms.gateways.' . $gatewayName);
-        } else {
-            $config = Config::get('sms.gateways.' . $this->getDefaultGatewayName());
-        }
+        $config = Config::get('sms.gateways.' . $gatewayName);
 
         if (empty($config)) {
             throw new \RuntimeException(' Please configure the gateway info  in the sms.conf file');

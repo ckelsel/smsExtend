@@ -19,6 +19,10 @@ return [
             'account'  => '',
             'password' => '',
         ],
+        'chuanglan_abroad' => [
+            'account'  => '',
+            'password' => '',
+        ],
     ],
     //白名单,建议测试环境下新增该配置，避免测试时发送真实的短信
     'white_list'       => [],

@@ -40,7 +40,8 @@ use Len\SmsExtend\SmsExtend;
 
 $mobile_phone = "13788889999";
 $message      = "短信验证码是：000000";
-$result       = SmsExtend::send($mobile_phone, $message);
+$gatewayName = "网关名称";//以sms.php里面配置的网关为准，不传则取默认网关
+$result       = SmsExtend::send($mobile_phone, $message, $gatewayName);
 ```
 
 4. 关于发送短信返回数据结构及说明：
