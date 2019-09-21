@@ -32,7 +32,7 @@ class ChuanglanabroadGateway extends Gateway
     {
         $clientData = [
             "msg"   => $message, //短信内容。长度不能超过536个字符
-            "phone" => $mobilePhone, //手机号码。多个手机号码使用英文逗号分隔
+            "mobile" => $mobilePhone, //手机号码。多个手机号码使用英文逗号分隔
         ];
 
         //组装数据
