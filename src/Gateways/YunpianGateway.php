@@ -39,7 +39,7 @@ class YunpianGateway extends Gateway
         $clientData = array_merge($clientData, $this->getGatewayConfig());
 
         //发送请求
-        $result = $this->postJson($this->gatewayUrl, $clientData);
+        $result = $this->post($this->gatewayUrl, $clientData);
         if (empty($result)) {
             return $this->responseData(400, "sms send faile");
         }
